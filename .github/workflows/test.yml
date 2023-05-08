@@ -4,7 +4,7 @@ on:
         branches:
         - main
 jobs:
-    test:
+    build:
         runs-on: ubuntu-latest
         steps: 
             - name: Checkout Code
@@ -24,6 +24,10 @@ jobs:
               run: npm install
             - name: Build App
               run: npm run build
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
             - name: Delete existing files
               uses: appleboy/ssh-action@master
               with:
