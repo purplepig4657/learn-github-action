@@ -13,4 +13,6 @@ jobs:
             
             - name: File list
               run: ls -alt
+            - name: NodeJS check
+              run: node -v
             
