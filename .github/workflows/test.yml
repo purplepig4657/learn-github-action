@@ -37,6 +37,7 @@ jobs:
               uses: actions/download-artifact@v2
               with:
                 name: build-artifact
+            - run: ls -alt
             - name: Delete existing files
               uses: appleboy/ssh-action@master
               with:
