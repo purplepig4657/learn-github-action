@@ -37,10 +37,6 @@ jobs:
               uses: actions/download-artifact@v2
               with:
                 name: build-artifact
-            - name: Move files to directory
-              run: |
-                mkdir build
-                mv ./* build
             - name: Delete existing files
               uses: appleboy/ssh-action@master
               with:
@@ -56,5 +52,5 @@ jobs:
                 port: ${{ secrets.SERVER_PORT }}
                 username: ${{ secrets.SERVER_USER }}
                 password: ${{ secrets.SERVER_PASSWORD }}
-                localDir: ./build
+                localDir: ./*
                 remoteDir: ${{ secrets.SERVER_PATH }}
