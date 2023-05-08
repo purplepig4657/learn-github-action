@@ -13,12 +13,16 @@ jobs:
               uses: actions/setup-node@v3
               with:
                 node-version: '19.x'
-            - name: NodeJS check
-              run: node -v
+            - name: npm cache
+              uses: actions/cache@v2
+              with:
+                path: ~/.npm
+                key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+                restore-keys: |
+                    ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
             - name: Install Dependencies
               run: npm install
             - name: Build App
               run: npm run build
             - name: File list
               run: ls -alt
-            
