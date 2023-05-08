@@ -25,11 +25,11 @@ jobs:
             - name: Build App
               run: npm run build
             - name: Deploy to Server
-              uses: easingthemes/ssh-deploy@v3
+              uses: wangyucode/sftp-upload-action@v2.0.2
               with:
-                server: ${{ secrets.SERVER_IP }}
+                host: ${{ secrets.SERVER_IP }}
                 port: ${{ secrets.SERVER_PORT }}
                 username: ${{ secrets.SERVER_USER }}
                 password: ${{ secrets.SERVER_PASSWORD }}
-                local_path: build
-                remote_path: ${{ secrets.SERVER_PATH }}
+                localDir: build
+                remoteDir: ${{ secrets.SERVER_PATH }}
