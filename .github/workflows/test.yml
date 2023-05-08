@@ -24,10 +24,19 @@ jobs:
               run: npm install
             - name: Build App
               run: npm run build
+            - name: Save artifact
+              uses: actions/upload-artifact@v2
+              with:
+                name: build-artifact
+                path: build
     deploy:
         needs: build
         runs-on: ubuntu-latest
         steps:
+            - name: Download artifact
+              uses: actions/download-artifact@v2
+              with:
+                name: build-artifact
             - name: Delete existing files
               uses: appleboy/ssh-action@master
               with:
