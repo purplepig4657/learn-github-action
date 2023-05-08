@@ -24,5 +24,12 @@ jobs:
               run: npm install
             - name: Build App
               run: npm run build
-            - name: File list
-              run: ls -alt
+            - name: Deploy to Server
+              uses: easingthemes/ssh-deploy@v3
+              with:
+                server: ${{ secrets.SERVER_IP }}
+                port: ${{ secrets.SERVER_PORT }}
+                username: ${{ secrets.SERVER_USER }}
+                password: ${{ secrets.SERVER_PASSWORD }}
+                local_path: build
+                remote_path: ${{ secrets.SERVER_PATH }}
