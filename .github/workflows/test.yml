@@ -37,7 +37,10 @@ jobs:
               uses: actions/download-artifact@v2
               with:
                 name: build-artifact
-            - run: ls -alt
+            - name: Move files to directory
+              run: |
+                mkdir build
+                mv ./* build
             - name: Delete existing files
               uses: appleboy/ssh-action@master
               with:
